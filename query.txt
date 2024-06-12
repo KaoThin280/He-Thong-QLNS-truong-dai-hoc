@@ -1,0 +1,226 @@
+
+Create Proc [dbo].[GetAccount]
+@userName nvarchar(100)
+AS
+BEGIN
+	SELECT * FROM dbo.Taikhoan WHERE MaGV = @userName
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllAccount]    Script Date: 06/06/2024 6:36:11 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[GetAllAccount]
+AS 
+Begin		
+	Select TaiKhoan.MaGV as 'Mã Giảng Viên', ThongTinHoSoGV.HoTen as 'Họ Và Tên', MatKhau as 'Mật Khẩu' From TaiKhoan, ThongTinHoSoGV Where ThongTinHoSoGV.MaGV = TaiKhoan.MaGV
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllBCHD]    Script Date: 06/06/2024 6:36:11 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[GetAllBCHD]
+AS 
+Begin		
+	Select ThongTinHoSoGV.HoTen as 'Họ Và Tên', LoaiHinh as 'Loại hình', NgayTD as 'Ngày tuyển dụng', NgayKT as 'Ngày kết thúc' From BCHD,ThongTinHoSoGV Where ThongTinHoSoGV.MaGV =BCHD.MaGV
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllBH]    Script Date: 06/06/2024 6:36:11 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[GetAllBH]
+AS 
+Begin		
+	Select ThongTinHoSoGV.HoTen as 'Họ Và Tên', BHXH as 'BHXH', TyLeBHXH as 'Tỷ lệ BHXH', BHTN as 'BHTN', TyLeBHTN as 'Tỷ lệ BHTN',  BHYT as 'BHYT', TyLeBHYT as 'Tỷ lệ BHYT'  From BaoHiem, ThongTinHoSoGV Where ThongTinHoSoGV.MaGV = BaoHiem.MaGV
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllBietPhai]    Script Date: 06/06/2024 6:36:11 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/* sp_rename 'ThongTinHoSoGV.NSPhuong', 'NSTinh', 'COLUMN';*/
+/*CREATE PROC proc_login
+@user nvarchar(30),
+/*@LoaiTK nvarchar(30),*/
+@pass nvarchar(30)
+AS
+BEGIN
+	SELECT * FROM Taikhoan WHERE MaGV = @user AND Matkhau = @pass  /*AND LoaiTK = @LoaiTK*/
+END*/
+
+
+
+/*DROP PROC proc_login*/
+
+/*CREATE PROC proc_LoaiTK
+@user nvarchar(30),
+@pass nvarchar(30)
+AS
+BEGIN
+	SELECT LoaiTK FROM TaiKhoan WHERE MaGV = @user AND Matkhau = @pass
+END
+
+DROP PROC proc_LoaiTK
+
+CREATE PROC proc_Matkhau
+@user nvarchar(30),
+@Email nvarchar(50)
+AS 
+Begin		
+	Select Matkhau From Taikhoan where MaGV = @user AND Email = @Email
+END
+
+CREATE PROC GetAllAccount
+AS 
+Begin		
+	Select ThongTinHoSoGV.MaGV as 'Mã Giảng Viên', ThongTinHoSoGV.HoTen as 'Họ Và Tên', Matkhau as 'Mật Khẩu' From TaiKhoan, ThongTinHoSoGV Where ThongTinHoSoGV.MaGV = TaiKhoan.MaGV
+END
+
+CREATE PROC GetAllBH
+AS 
+Begin		
+	Select ThongTinHoSoGV.HoTen as 'Họ Và Tên', BHXH as 'BHXH', TyLeBHXH as 'Tỷ lệ BHXH', BHTN as 'BHTN', TyLeBHTN as 'Tỷ lệ BHTN',  BHYT as 'BHYT', TyLeBHYT as 'Tỷ lệ BHYT'  From BaoHiem, ThongTinHoSoGV Where ThongTinHoSoGV.MaGV = BaoHiem.MaGV
+END */
+
+/*CREATE PROC GetAllNghiHuu
+AS 
+Begin		
+	Select ThongTinHoSoGV.HoTen as 'Họ Và Tên', DonViTiepNhan as 'Đơn vị tiếp nhận', NgayNghiHuu as 'Ngày nghỉ chính thức' From NghiHuu, ThongTinHoSoGV Where ThongTinHoSoGV.MaGV = NghiHuu.MaGV
+END*/
+
+/*CREATE PROC GetAllDangDoan
+AS 
+Begin		
+	Select ThongTinHoSoGV.HoTen as 'Họ Và Tên', ToChucDang as 'Tổ chức', ChucVu as 'Chức vụ', DangDoan.NgayVao as 'Ngày vào', NgayChinhThuc as 'Ngày chính thức' From CongTacDangDoan, ThongTinHoSoGV, DangDoan Where ThongTinHoSoGV.MaGV = DangDoan.MaNS and ThongTinHoSoGV.MaGV = CongTacDangDoan.MaGV
+END*/
+
+/*CREATE PROC GetAllKTKL
+AS 
+Begin		
+	Select ThongTinHoSoGV.HoTen as 'Họ Và Tên', HinhThuc as 'Hình thức', LyDo as 'Lý do', Nam as 'Năm' From KTvaKL,ThongTinHoSoGV Where ThongTinHoSoGV.MaGV =KTvaKL.MaGV
+END*/
+
+/*CREATE PROC GetAllCDH
+AS 
+Begin		
+	Select ThongTinHoSoGV.HoTen as 'Họ Và Tên', CoQuanQD as 'Cơ sở ĐT', HinhThuc as 'Hình thức', ChuongTrinhDT as 'Chương trình ĐT', NienKhoa as 'Niên khóa', LoaiTrinhDo as 'Loại trình độ', ChuyenNganh as 'Chuyên ngành' From CuDiHoc,ThongTinHoSoGV Where ThongTinHoSoGV.MaGV =CuDiHoc.MaGV
+END*/
+
+/*CREATE PROC GetAllBCHD
+AS 
+Begin		
+	Select ThongTinHoSoGV.HoTen as 'Họ Và Tên', LoaiHinh as 'Loại hình', NgayTD as 'Ngày tuyển dụng', NgayKT as 'Ngày kết thúc' From BCHD,ThongTinHoSoGV Where ThongTinHoSoGV.MaGV =BCHD.MaGV
+END*/
+
+CREATE PROC [dbo].[GetAllBietPhai]
+AS 
+Begin		
+	Select ThongTinHoSoGV.HoTen as 'Họ Và Tên', ChucVu as 'Chức vụ', PhongBan as 'Phòng ban', NgayBD as 'Ngày bắt đầu', NgayKT as 'Ngày kết thúc', ChucVuBanDau as 'Chức vụ ban đầu', HinhThuc as 'Hình thức' From BietPhai,ThongTinHoSoGV Where ThongTinHoSoGV.MaGV =BietPhai.MaGV
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllCDH]    Script Date: 06/06/2024 6:36:11 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[GetAllCDH]
+AS 
+Begin		
+	Select ThongTinHoSoGV.HoTen as 'Họ Và Tên', CoQuanQD as 'Cơ sở ĐT', HinhThuc as 'Hình thức', ChuongTrinhDT as 'Chương trình ĐT', NienKhoa as 'Niên khóa', LoaiTrinhDo as 'Loại trình độ', ChuyenNganh as 'Chuyên ngành' From CuDiHoc,ThongTinHoSoGV Where ThongTinHoSoGV.MaGV =CuDiHoc.MaGV
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllDangDoan]    Script Date: 06/06/2024 6:36:11 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[GetAllDangDoan]
+AS 
+Begin		
+	Select ThongTinHoSoGV.HoTen as 'Họ Và Tên', ToChucDang as 'Tổ chức', ChucVu as 'Chức vụ', DangDoan.NgayVao as 'Ngày vào', NgayChinhThuc as 'Ngày chính thức' From CongTacDangDoan, ThongTinHoSoGV, DangDoan Where ThongTinHoSoGV.MaGV = DangDoan.MaNS and ThongTinHoSoGV.MaGV = CongTacDangDoan.MaGV
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllKTKL]    Script Date: 06/06/2024 6:36:11 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[GetAllKTKL]
+AS 
+Begin		
+	Select ThongTinHoSoGV.HoTen as 'Họ Và Tên', HinhThuc as 'Hình thức', LyDo as 'Lý do', Nam as 'Năm' From KTvaKL,ThongTinHoSoGV Where ThongTinHoSoGV.MaGV =KTvaKL.MaGV
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllNghiHuu]    Script Date: 06/06/2024 6:36:11 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[GetAllNghiHuu]
+AS 
+Begin		
+	Select ThongTinHoSoGV.HoTen as 'Họ Và Tên', DonViTiepNhan as 'Đơn vị tiếp nhận', NgayNghiHuu as 'Ngày nghỉ chính thức' From NghiHuu, ThongTinHoSoGV Where ThongTinHoSoGV.MaGV = NghiHuu.MaGV
+END
+GO
+/****** Object:  StoredProcedure [dbo].[proc_Email]    Script Date: 06/06/2024 6:36:11 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[proc_Email]
+@user nvarchar(30)
+AS
+BEGIN
+	SELECT Email FROM TaiKhoan WHERE MaGV = @user
+END
+GO
+/****** Object:  StoredProcedure [dbo].[proc_LoaiTK]    Script Date: 06/06/2024 6:36:11 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[proc_LoaiTK]
+@user nvarchar(30),
+@pass nvarchar(30)
+AS
+BEGIN
+	SELECT LoaiTK FROM TaiKhoan WHERE MaGV = @user AND Matkhau = @pass
+END
+GO
+/****** Object:  StoredProcedure [dbo].[proc_login]    Script Date: 06/06/2024 6:36:11 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[proc_login]
+@user nvarchar(30),
+/*@LoaiTK nvarchar(30),*/
+@pass nvarchar(30)
+AS
+BEGIN
+	SELECT * FROM Taikhoan WHERE MaGV = @user AND Matkhau = @pass  /*AND LoaiTK = @LoaiTK*/
+END
+GO
+/****** Object:  StoredProcedure [dbo].[proc_Matkhau]    Script Date: 06/06/2024 6:36:11 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[proc_Matkhau]
+@user nvarchar(30),
+@Email nvarchar(50)
+AS 
+Begin		
+	Select Matkhau From Taikhoan where MaGV = @user AND Email = @Email
+END
+GO
+USE [master]
+GO
+ALTER DATABASE [QLNS] SET  READ_WRITE 
+GO
